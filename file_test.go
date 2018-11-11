@@ -181,7 +181,7 @@ func TestRandomAccess(t *testing.T) {
 			t.Fatalf("Read error: %s", err)
 		}
 		if int64(n) != length {
-			t.Error("Incomplete read: %d %d", n, length)
+			t.Errorf("Incomplete read: %d %d", n, length)
 		}
 		if !bytes.Equal(test, tdata[pos:pos+length]) {
 			t.Errorf("Read does not match image: %d %d", pos, length)
@@ -194,7 +194,7 @@ func TestRandomAccess(t *testing.T) {
 			t.Fatalf("Write error: %s", err)
 		}
 		if int64(n) != length {
-			t.Error("Incomplete write: %d %d", n, length)
+			t.Errorf("Incomplete write: %d %d", n, length)
 		}
 		copy(tdata[pos:pos+length], test)
 	}

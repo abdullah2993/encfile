@@ -22,7 +22,7 @@ const saltSize = 32
 const gcmVer = 16
 const encKeySize = KeySize + gcmVer
 const headerSize = saltSize + encKeySize
-const fileMode = os.ModePerm & 0600
+const fileMode = 666
 const sectorFooter = gcmVer
 
 // RandomSource of the packet
@@ -161,7 +161,7 @@ func Create(filename string, passphrase []byte, sectorSize int) (*EncryptedFile,
 
 // Append a file. Must exist
 func Append(filename string, passphrase []byte, sectorSize int) (*EncryptedFile, error) {
-	return open(filename, passphrase, sectorSize, os.O_WRONLY|os.O_APPEND, true)
+	return open(filename, passphrase, sectorSize, os.O_RDWR|os.O_APPEND, true)
 }
 
 // View a file. Open for reading only. Must exist
